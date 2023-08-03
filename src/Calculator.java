@@ -28,7 +28,7 @@ public class Calculator implements ActionListener{
 
         //Initializing DisplayScreen
         displayscreen=new JTextField();
-        displayscreen.setBounds(25,25,355,80);
+        displayscreen.setBounds(20,25,370,90);
         displayscreen.setFont(disp_font);
         displayscreen.setHorizontalAlignment(JTextField.RIGHT);
         displayscreen.setEditable(false);
@@ -64,7 +64,7 @@ public class Calculator implements ActionListener{
         opr[5]=equ;
         opr[6]=del;
         opr[7]=clr;
-        opr[8]=inv;
+        opr[8]=off;
         opr[9]=prc;
         opr[10]=sin;
         opr[11]=cos;
@@ -103,11 +103,15 @@ public class Calculator implements ActionListener{
 
         //InitializingPanel
         JPanel panel =new JPanel();
-        panel.setBounds(35,140,330,440);
+        panel.setBounds(35,140,330,460);
         panel.setLayout(new GridLayout(8,4,10,10));
         panel.setBackground(Color.DARK_GRAY);
 
         //Adding Buttons to panel
+        panel.add(off);
+        panel.add(power);
+        panel.add(del);
+        panel.add(clr);
         panel.add(sin);
         panel.add(cos);
         panel.add(tan);
@@ -115,13 +119,6 @@ public class Calculator implements ActionListener{
         panel.add(sqrt);
         panel.add(square);
         panel.add(log);
-        panel.add(power);
-        panel.add(inv);
-        // panel.add(pm);
-        
-        // panel.add(off);
-        panel.add(clr);
-        panel.add(del);
         panel.add(div);
         panel.add(num[7]);
         panel.add(num[8]);
@@ -139,7 +136,8 @@ public class Calculator implements ActionListener{
         panel.add(num[0]);
         panel.add(dec);
         panel.add(equ);
-
+        // panel.add(inv);
+        
         //Adding Panel and Display Screen to Frame
         frame.add(displayscreen);
         frame.add(panel);
