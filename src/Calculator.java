@@ -8,8 +8,8 @@ public class Calculator implements ActionListener{
     JFrame frame;
     JTextField displayscreen;
     JButton[] num=new JButton[10];
-    JButton[] opr=new JButton[10];
-    JButton dec,equ,del,clr,add,sub,mul,div,prc,off;
+    JButton[] opr=new JButton[18];
+    JButton dec,equ,del,clr,add,sub,mul,div,prc,off,sin,cos, tan, exp, sqrt, square, log, power, inv, pm;
 
     //Fonts Declaration
     Font disp_font=new Font("Digital-7",Font.BOLD,48);
@@ -22,7 +22,7 @@ public class Calculator implements ActionListener{
         //Initializing Frame
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(420,500);
+        frame.setSize(420,600);
         frame.setLayout(null);
         frame.getContentPane().setBackground(Color.DARK_GRAY);
 
@@ -44,6 +44,16 @@ public class Calculator implements ActionListener{
         clr = new JButton("CLR");
         off = new JButton("OFF");
         prc = new JButton("%");
+        sin = new JButton("sin");
+        cos = new JButton("cos");
+        tan = new JButton("tan");
+        exp = new JButton("exp");
+        sqrt = new JButton("sqrt");
+        square = new JButton("x^2");
+        log = new JButton("log");
+        power = new JButton("^");
+        inv = new JButton("1/x");
+        pm = new JButton("+/-");
 
         //Appending Buttons to FunctionalButton Arrays
         opr[0]=add;
@@ -54,11 +64,20 @@ public class Calculator implements ActionListener{
         opr[5]=equ;
         opr[6]=del;
         opr[7]=clr;
-        opr[8]=off;
+        opr[8]=inv;
         opr[9]=prc;
+        opr[10]=sin;
+        opr[11]=cos;
+        opr[12]=tan;
+        opr[13]=exp;
+        opr[14]=sqrt;
+        opr[15]=square;
+        opr[16]=log;
+        opr[17]=power;
+
 
         //Operational Buttons
-        for(int i=0;i<10;i++){
+        for(int i=0;i<18;i++){
             opr[i].addActionListener(this);
             opr[i].setFont(opr_font);
             opr[i].setFocusable(false);
@@ -84,12 +103,23 @@ public class Calculator implements ActionListener{
 
         //InitializingPanel
         JPanel panel =new JPanel();
-        panel.setBounds(35,140,330,300);
-        panel.setLayout(new GridLayout(5,4,10,10));
+        panel.setBounds(35,140,330,440);
+        panel.setLayout(new GridLayout(8,4,10,10));
         panel.setBackground(Color.DARK_GRAY);
 
         //Adding Buttons to panel
-        panel.add(off);
+        panel.add(sin);
+        panel.add(cos);
+        panel.add(tan);
+        panel.add(exp);
+        panel.add(sqrt);
+        panel.add(square);
+        panel.add(log);
+        panel.add(power);
+        panel.add(inv);
+        // panel.add(pm);
+        
+        // panel.add(off);
         panel.add(clr);
         panel.add(del);
         panel.add(div);
@@ -175,6 +205,58 @@ public class Calculator implements ActionListener{
             operator = '%';
             displayscreen.setText("");
         }
+        if (e.getSource() == sin) {
+            double num = Double.parseDouble(displayscreen.getText());
+            double radians = Math.toRadians(num);
+            double result = Math.sin(radians);
+            displayscreen.setText(String.valueOf(result));
+        }
+        if (e.getSource() == cos) {
+            double num = Double.parseDouble(displayscreen.getText());
+            double radians = Math.toRadians(num);
+            double result = Math.cos(radians);
+            displayscreen.setText(String.valueOf(result));
+        }
+        if (e.getSource() == tan) {
+            double num = Double.parseDouble(displayscreen.getText());
+            double radians = Math.toRadians(num);
+            double result = Math.tan(radians);
+            displayscreen.setText(String.valueOf(result));
+        }
+        if (e.getSource() == exp) {
+            double num = Double.parseDouble(displayscreen.getText());
+            double result = Math.exp(num);
+            displayscreen.setText(String.valueOf(result));
+        }
+        if (e.getSource() == sqrt) {
+            double num = Double.parseDouble(displayscreen.getText());
+            double result = Math.sqrt(num);
+            displayscreen.setText(String.valueOf(result));
+        }
+        if (e.getSource() == square) {
+            double num = Double.parseDouble(displayscreen.getText());
+            double result = Math.pow(num, 2);
+            displayscreen.setText(String.valueOf(result));
+        }
+        if (e.getSource() == log) {
+            double num = Double.parseDouble(displayscreen.getText());
+            double result = Math.log10(num);
+            displayscreen.setText(String.valueOf(result));
+        }
+        if (e.getSource() == power) {
+            num1 = Double.parseDouble(displayscreen.getText());
+            operator = '^';
+            displayscreen.setText("");
+        }
+        if (e.getSource() == inv) {
+            double num = Double.parseDouble(displayscreen.getText());
+            if (num != 0) {
+                double result = 1 / num;
+                displayscreen.setText(String.valueOf(result));
+            } else {
+                displayscreen.setText("MATH ERROR");
+            }
+        }
         if(e.getSource()==equ) {
             num2 = Double.parseDouble(displayscreen.getText());
             switch (operator){
@@ -204,5 +286,6 @@ public class Calculator implements ActionListener{
             displayscreen.setText(String.valueOf(result));
             num1=result;
         }
+        
     }
 }
